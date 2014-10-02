@@ -35,6 +35,7 @@ public class TweetListModel {
 		for(int i=0; i<tweets.size(); i++){
 			if(tweets.get(i).equals(tweet)){
 				b = true;
+				throw new IllegalArgumentException("ERROR");
 			}
 		}
 		// TODO: Add only when it is not a duplicate

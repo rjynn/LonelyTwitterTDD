@@ -65,11 +65,16 @@ public class TweetListModelTest extends TestCase {
 	}
 	
 	public void testDuplicates(){
+		TweetListModel list = null;
+		try{
 		Tweet t= new Tweet("hello");
 		Tweet t2 = new Tweet("hello");
-		TweetListModel list = new TweetListModel();
+		list = new TweetListModel();
 		list.addTweet(t);
-		list.addTweet(t2);
-		assertTrue("did not add", list.getCount() == 1);
+		list.addTweet(t2);}
+		catch(IllegalArgumentException e){
+		assertTrue("did not add", list.getCount()==1);
 	}
+	}
+
 }
