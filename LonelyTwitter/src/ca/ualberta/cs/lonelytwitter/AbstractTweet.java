@@ -3,7 +3,7 @@ package ca.ualberta.cs.lonelytwitter;
 import java.io.Serializable;
 import java.util.Date;
 
-public abstract class AbstractTweet implements Serializable {
+public abstract class AbstractTweet implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,4 +35,7 @@ public abstract class AbstractTweet implements Serializable {
 	public abstract boolean equals(Object other);
 
 	public abstract String toString();
+	
+	
+	
 }

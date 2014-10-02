@@ -1,9 +1,16 @@
 package ca.ualberta.cs.lonelytwitter.data;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
+import android.R.array;
+import android.util.Log;
+
 import ca.ualberta.cs.lonelytwitter.AbstractTweet;
+import ca.ualberta.cs.lonelytwitter.Tweet;
 
 public class TweetListModel {
 
@@ -24,8 +31,16 @@ public class TweetListModel {
 	 *            Tweet to be appended to this list
 	 */
 	public void addTweet(AbstractTweet tweet) {
+		boolean b =false;
+		for(int i=0; i<tweets.size(); i++){
+			if(tweets.get(i).equals(tweet)){
+				b = true;
+			}
+		}
 		// TODO: Add only when it is not a duplicate
-		tweets.add(tweet);
+		if(b==false){
+			tweets.add(tweet);
+		}
 	}
 
 	/**
@@ -34,8 +49,7 @@ public class TweetListModel {
 	 * @return the number of tweets in this list
 	 */
 	public int getCount() {
-		// TODO: return real count
-		return 0;
+		return tweets.size();
 	}
 
 	/**
@@ -46,8 +60,7 @@ public class TweetListModel {
 	 * @return true if this list contains the specified element
 	 */
 	public boolean hasTweet(AbstractTweet tweet) {
-		// TODO: Find if the tweet already exists
-		return false;
+		return tweets.contains(tweet);
 	}
 
 	/**
@@ -58,7 +71,7 @@ public class TweetListModel {
 	 *            Tweet to be removed from this list, if present.
 	 */
 	public void removeTweet(AbstractTweet tweet) {
-		// TODO: Remove tweet
+		tweets.remove(tweet);
 	}
 
 	/**
@@ -68,8 +81,32 @@ public class TweetListModel {
 	 * @return an array containing the tweets of the list.
 	 */
 	public AbstractTweet[] getTweets() {
-		// TODO: return sorted list of tweets
-		return null;
+//		ArrayList<AbstractTweet> tweets2 = new ArrayList<AbstractTweet>();
+//		int newsize = tweets.size();
+//		ArrayList<AbstractTweet> clonetweets = new ArrayList<AbstractTweet>(tweets);
+//		while(newsize  0){
+//			AbstractTweet smallest = tweets.get(0);
+//			for(int i=1; i<newsize;i++){
+//				String s = clonetweets.get(i).getTweetBody();
+//				Log.v("This", s);
+//				if (smallest.getTweetBody().compareTo(clonetweets.get(i).getTweetBody())<0){
+//					smallest = clonetweets.get(i);
+//				}
+//			}
+//			tweets2.add(smallest);
+//			clonetweets.remove(smallest);
+//			newsize--;
+//		}
+		Collections.sort(tweets, new Comparator<AbstractTweet>(){
+			//@Override
+			public int compare(AbstractTweet tweet1, AbstractTweet tweet2){
+				return tweet1.getTweetBody().compareTo(tweet2.getTweetBody());
+			}			
+		});
+		AbstractTweet[] tweetarray = new AbstractTweet[tweets.size()];
+		return tweets.toArray(tweetarray);
+		//return tweetarray;
+		
 	}
 
 	/**
